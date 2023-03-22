@@ -1,14 +1,15 @@
-window.onload = function() {
+// User Interface Logic
+window.addEventListener("load", function() {
   let form = document.querySelector("form");
-  form.onsubmit = function(event) {
-    event.preventDefault();
+  let resetBtn = document.getElementById("reset");
+  let story = document.getElementById("story");
+
+  form.addEventListener("submit", function(event) {
     const person1Input = document.getElementById("person1Input").value;
     const person2Input = document.getElementById("person2Input").value;
     const animalInput= document.getElementById("animalInput").value;
     const exclamationInput = document.getElementById("exclamationInput").value;
     const verbInput = document.getElementById("verbInput").value;
-    // Here's the first log we added.
-    console.log("verbInput = " + verbInput);
     const nounInput = document.getElementById("nounInput").value;
 
     document.querySelector("span#person1a").innerText = person1Input;
@@ -17,15 +18,29 @@ window.onload = function() {
     document.querySelector("span#person2a").innerText = person2Input;
     document.querySelector("span#person2b").innerText = person2Input;
     document.querySelector("span#animal").innerText = animalInput;
-    // Here are the 3 new logs!
-    console.log("Correctly targeting <span>? = ", document.querySelector("span#verb"));
-    console.log("Correctly targeting innerText? = ", document.querySelector("span#verb").inerText);
     document.querySelector("span#verb").innerText = verbInput;
-    console.log("Correctly referencing verbInput and assigning value of innerText? = ", document.querySelector("span#verb").inerText);
-    // Above are the 3 new logs!
     document.querySelector("span#noun").innerText = nounInput;
     document.querySelector("span#exclamation").innerText = exclamationInput;
 
-    document.querySelector("div#story").removeAttribute("class");
-  };
-};
+    story.removeAttribute("class");
+    event.preventDefault();
+  });
+
+  form.addEventListener("submit", function() {
+    resetBtn.removeAttribute("class");
+  }); 
+
+  form.addEventListener("submit", function() {
+    window.alert("Do you need a new computer? Visit www.superextracomputersales.com to find the best deals!");
+  }); 
+
+  resetBtn.addEventListener("click", function() {
+    story.setAttribute("class", "hidden");
+    document.getElementById("person1Input").value = null;
+    document.getElementById("person2Input").value = null;
+    document.getElementById("animalInput").value = null;
+    document.getElementById("exclamationInput").value = null;
+    document.getElementById("verbInput").value = null;
+    document.getElementById("nounInput").value = null;
+  });
+});
